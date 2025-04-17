@@ -1,0 +1,14 @@
+running egg_info
+writing manifest file '../../build/driver/driver.egg-info/SOURCES.txt'
+running build
+running build_py
+copying driver/motor_controller.py -> /home/hazbot/hazbot/build/driver/build/lib/driver
+running install
+running install_lib
+byte-compiling /home/hazbot/hazbot/install/driver/lib/python3.10/site-packages/driver/motor_controller.py to motor_controller.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/home/hazbot/hazbot/install/driver/lib/python3.10/site-packages/driver-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/driver/driver.egg-info to /home/hazbot/hazbot/install/driver/lib/python3.10/site-packages/driver-0.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/hazbot/hazbot/build/driver/install.log'

@@ -1,0 +1,19 @@
+[3.555s] Invoking command in '/home/hazbot/hazbot/build/driver': PYTHONPATH=/home/hazbot/hazbot/build/driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hazbot/hazbot/install/driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/hazbot/hazbot/build/driver/build --no-deps symlink_data
+[4.994s] running develop
+[5.840s] running egg_info
+[5.840s] creating driver.egg-info
+[5.842s] writing manifest file 'driver.egg-info/SOURCES.txt'
+[5.847s] writing manifest file 'driver.egg-info/SOURCES.txt'
+[6.005s] running build_ext
+[6.008s] running symlink_data
+[6.009s] creating /home/hazbot/hazbot/install/driver/share/ament_index
+[6.009s] creating /home/hazbot/hazbot/install/driver/share/ament_index/resource_index
+[6.009s] creating /home/hazbot/hazbot/install/driver/share/ament_index/resource_index/packages
+[6.009s] symbolically linking /home/hazbot/hazbot/build/driver/resource/driver -> /home/hazbot/hazbot/install/driver/share/ament_index/resource_index/packages
+[6.009s] symbolically linking /home/hazbot/hazbot/build/driver/package.xml -> /home/hazbot/hazbot/install/driver/share/driver
+[6.010s] creating /home/hazbot/hazbot/install/driver/share/driver/launch
+[6.010s] symbolically linking /home/hazbot/hazbot/build/driver/launch/navigation.launch.py -> /home/hazbot/hazbot/install/driver/share/driver/launch
+[6.010s] creating /home/hazbot/hazbot/install/driver/share/driver/urdf
+[6.010s] creating /home/hazbot/hazbot/install/driver/share/driver/config
+[6.010s] symbolically linking /home/hazbot/hazbot/build/driver/config/nav2_params.yaml -> /home/hazbot/hazbot/install/driver/share/driver/config
+[6.129s] Invoked command in '/home/hazbot/hazbot/build/driver' returned '0': PYTHONPATH=/home/hazbot/hazbot/build/driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hazbot/hazbot/install/driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/hazbot/hazbot/build/driver/build --no-deps symlink_data

@@ -1,0 +1,339 @@
+[0.573s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.574s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=12, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0xffffb313dba0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffffb3326aa0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffffb3326aa0>>, mixin_verb=('build',))
+[1.319s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.320s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.320s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.320s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.320s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.320s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.320s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/hazbot/hazbot'
+[1.320s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.321s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.321s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.321s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.321s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.321s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.321s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.321s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.321s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[1.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[1.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[1.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[1.351s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[1.351s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[1.351s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[1.351s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[1.351s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[1.352s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[1.352s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[1.352s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.352s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[1.352s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[1.352s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[1.353s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[1.354s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[1.354s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[1.354s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[1.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/driver) by extensions ['ignore', 'ignore_ament_install']
+[1.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/driver) by extension 'ignore'
+[1.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/driver) by extension 'ignore_ament_install'
+[1.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/driver) by extensions ['colcon_pkg']
+[1.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/driver) by extension 'colcon_pkg'
+[1.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/driver) by extensions ['colcon_meta']
+[1.355s] Level 1:colcon.colcon_core.package_identification:_identify(src/driver) by extension 'colcon_meta'
+[1.355s] Level 1:colcon.colcon_core.package_identification:_identify(src/driver) by extensions ['ros']
+[1.355s] Level 1:colcon.colcon_core.package_identification:_identify(src/driver) by extension 'ros'
+[1.360s] DEBUG:colcon.colcon_core.package_identification:Package 'src/driver' with type 'ros.ament_python' and name 'driver'
+[1.360s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[1.360s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[1.361s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[1.361s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[1.361s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[1.468s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[1.468s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[1.471s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/mcap_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.471s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/zstd_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.471s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/yaml_cpp_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.471s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/urdf_parser_plugin' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_lint_common' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_uncrustify' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_uncrustify' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/uncrustify_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/tracetools_trace' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/tracetools_read' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/tracetools' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/tlsf' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/tinyxml_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/tinyxml2_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/test_launch_testing' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.472s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/test_interface_files' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/qt_gui_app' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/qt_gui' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/tango_icons_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/sqlite3_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/spdlog_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/shared_queues_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rviz_assimp_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rttest' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rti_connext_dds_cmake_module' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rpyutils' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rosidl_typesupport_interface' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rosidl_generator_dds_idl' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.473s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rosidl_cmake' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rosidl_parser' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rosidl_adapter' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rosidl_cli' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ros_environment' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/rmw_implementation_cmake' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/resource_retriever' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/qt_gui_py_common' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/qt_dotgraph' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/python_qt_binding' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/python_orocos_kdl_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/launch_testing_ament_cmake' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/python_cmake_module' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.474s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/pybind11_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/performance_test_fixture' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/launch_pytest' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/launch_testing' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/launch_yaml' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/launch_xml' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/launch' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/osrf_pycommon' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/orocos_kdl_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/mimick_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/libcurl_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/keyboard_handler' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.475s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_ros' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_auto' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_gmock' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_gtest' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_google_benchmark' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/fastrtps_cmake_module' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/eigen3_cmake_module' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/domain_coordinator' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/console_bridge_vendor' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_xmllint' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_xmllint' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_pyflakes' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_pyflakes' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.476s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_pycodestyle' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_pycodestyle' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_pep257' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_pep257' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_pclint' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_pclint' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_lint_auto' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_version' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_vendor_package' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_pytest' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_nose' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_mypy' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.477s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_lint_cmake' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_flake8' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_cpplint' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_cppcheck' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_copyright' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_clang_tidy' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_clang_format' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_test' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_target_dependencies' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_python' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_export_dependencies' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_libraries' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_include_directories' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.478s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_gen_version_h' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_export_targets' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_export_link_flags' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_export_interfaces' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_export_libraries' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_export_include_directories' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_export_definitions' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cmake_core' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_package' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_mypy' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_lint_cmake' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_flake8' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.479s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_copyright' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.480s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_lint' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.480s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_index_python' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.480s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_index_cpp' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.480s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cpplint' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.480s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_cppcheck' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.480s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_clang_tidy' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.480s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/hazbot/hazbot/install/ament_clang_format' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.509s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/mcap_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.509s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/zstd_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.509s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/yaml_cpp_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.509s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/urdf_parser_plugin' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.509s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/urdfdom_headers' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.509s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_lint_common' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.509s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_uncrustify' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.509s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/uncrustify_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/tracetools' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/tlsf' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/tinyxml_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/tinyxml2_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/test_launch_testing' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/test_interface_files' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/qt_gui_app' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/qt_gui' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/tango_icons_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/sqlite3_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/spdlog_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.510s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/shared_queues_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.511s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/rviz_assimp_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.511s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/rttest' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.511s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/rti_connext_dds_cmake_module' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.511s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/rosidl_typesupport_interface' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.511s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/rosidl_generator_dds_idl' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.511s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/rosidl_cmake' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.511s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/rosidl_parser' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.511s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/rosidl_adapter' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ros_environment' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/rmw_implementation_cmake' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/resource_retriever' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/qt_gui_py_common' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/qt_dotgraph' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/python_qt_binding' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/python_orocos_kdl_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/launch_testing_ament_cmake' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/python_cmake_module' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/pybind11_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/performance_test_fixture' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.512s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/osrf_testing_tools_cpp' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/orocos_kdl_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/mimick_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/libcurl_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/keyboard_handler' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/iceoryx_introspection' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/iceoryx_posh' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/iceoryx_hoofs' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/iceoryx_binding_c' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_ros' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_auto' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.513s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_gmock' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/gmock_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_gtest' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/gtest_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_google_benchmark' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/foonathan_memory_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/fastrtps_cmake_module' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/fastcdr' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/eigen3_cmake_module' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/console_bridge_vendor' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_xmllint' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.514s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_pyflakes' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_pycodestyle' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_pep257' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_pclint' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_lint_auto' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_version' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_vendor_package' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_pytest' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_nose' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_mypy' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_lint_cmake' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_flake8' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.515s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_cpplint' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_cppcheck' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_copyright' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_clang_tidy' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_clang_format' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_test' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_target_dependencies' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_python' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_export_dependencies' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_libraries' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_include_directories' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.517s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_gen_version_h' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.517s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_export_targets' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.517s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_export_link_flags' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.517s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_export_interfaces' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.517s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_export_libraries' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.517s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_export_include_directories' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.517s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_export_definitions' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.517s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_cmake_core' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.517s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/hazbot/hazbot/install/ament_index_cpp' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.524s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 16 installed packages in /home/hazbot/zed2_ws/install
+[1.550s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 346 installed packages in /home/hazbot/ros2_humble/install
+[1.555s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 0 installed packages in /home/hazbot/hazbot/install
+[1.557s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 337 installed packages in /opt/ros/humble
+[1.579s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[1.733s] Level 5:colcon.colcon_core.verb:set package 'driver' build argument 'cmake_args' from command line to 'None'
+[1.733s] Level 5:colcon.colcon_core.verb:set package 'driver' build argument 'cmake_target' from command line to 'None'
+[1.733s] Level 5:colcon.colcon_core.verb:set package 'driver' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.733s] Level 5:colcon.colcon_core.verb:set package 'driver' build argument 'cmake_clean_cache' from command line to 'False'
+[1.733s] Level 5:colcon.colcon_core.verb:set package 'driver' build argument 'cmake_clean_first' from command line to 'False'
+[1.733s] Level 5:colcon.colcon_core.verb:set package 'driver' build argument 'cmake_force_configure' from command line to 'False'
+[1.733s] Level 5:colcon.colcon_core.verb:set package 'driver' build argument 'ament_cmake_args' from command line to 'None'
+[1.734s] Level 5:colcon.colcon_core.verb:set package 'driver' build argument 'catkin_cmake_args' from command line to 'None'
+[1.734s] Level 5:colcon.colcon_core.verb:set package 'driver' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.734s] DEBUG:colcon.colcon_core.verb:Building package 'driver' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/hazbot/hazbot/build/driver', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/hazbot/hazbot/install/driver', 'merge_install': False, 'path': '/home/hazbot/hazbot/src/driver', 'symlink_install': True, 'test_result_base': None}
+[1.734s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[1.736s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[1.737s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/hazbot/hazbot/src/driver' with build type 'ament_python'
+[1.737s] Level 1:colcon.colcon_core.shell:create_environment_hook('driver', 'ament_prefix_path')
+[1.752s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[1.752s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hazbot/hazbot/install/driver/share/driver/hook/ament_prefix_path.ps1'
+[1.754s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/hazbot/hazbot/install/driver/share/driver/hook/ament_prefix_path.dsv'
+[1.756s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hazbot/hazbot/install/driver/share/driver/hook/ament_prefix_path.sh'
+[1.759s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.759s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.199s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/hazbot/hazbot/src/driver'
+[3.200s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.200s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.292s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/hazbot/hazbot/build/driver': PYTHONPATH=/home/hazbot/hazbot/build/driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hazbot/hazbot/install/driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/hazbot/hazbot/build/driver/build --no-deps symlink_data
+[7.864s] Level 1:colcon.colcon_core.shell:create_environment_hook('driver', 'pythonpath_develop')
+[7.865s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hazbot/hazbot/build/driver/share/driver/hook/pythonpath_develop.ps1'
+[7.866s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/hazbot/hazbot/build/driver' returned '0': PYTHONPATH=/home/hazbot/hazbot/build/driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hazbot/hazbot/install/driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/hazbot/hazbot/build/driver/build --no-deps symlink_data
+[7.868s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/hazbot/hazbot/build/driver/share/driver/hook/pythonpath_develop.dsv'
+[7.869s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hazbot/hazbot/build/driver/share/driver/hook/pythonpath_develop.sh'
+[7.886s] Level 1:colcon.colcon_core.environment:checking '/home/hazbot/hazbot/install/driver' for CMake module files
+[7.886s] Level 1:colcon.colcon_core.environment:checking '/home/hazbot/hazbot/install/driver' for CMake config files
+[7.888s] Level 1:colcon.colcon_core.environment:checking '/home/hazbot/hazbot/install/driver/lib'
+[7.888s] Level 1:colcon.colcon_core.environment:checking '/home/hazbot/hazbot/install/driver/bin'
+[7.888s] Level 1:colcon.colcon_core.environment:checking '/home/hazbot/hazbot/install/driver/lib/pkgconfig/driver.pc'
+[7.889s] Level 1:colcon.colcon_core.environment:checking '/home/hazbot/hazbot/install/driver/lib/python3.10/site-packages'
+[7.889s] Level 1:colcon.colcon_core.shell:create_environment_hook('driver', 'pythonpath')
+[7.889s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hazbot/hazbot/install/driver/share/driver/hook/pythonpath.ps1'
+[7.890s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/hazbot/hazbot/install/driver/share/driver/hook/pythonpath.dsv'
+[7.891s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hazbot/hazbot/install/driver/share/driver/hook/pythonpath.sh'
+[7.892s] Level 1:colcon.colcon_core.environment:checking '/home/hazbot/hazbot/install/driver/bin'
+[7.892s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(driver)
+[7.893s] INFO:colcon.colcon_core.shell:Creating package script '/home/hazbot/hazbot/install/driver/share/driver/package.ps1'
+[7.895s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/hazbot/hazbot/install/driver/share/driver/package.dsv'
+[7.897s] INFO:colcon.colcon_core.shell:Creating package script '/home/hazbot/hazbot/install/driver/share/driver/package.sh'
+[7.898s] INFO:colcon.colcon_core.shell:Creating package script '/home/hazbot/hazbot/install/driver/share/driver/package.bash'
+[7.900s] INFO:colcon.colcon_core.shell:Creating package script '/home/hazbot/hazbot/install/driver/share/driver/package.zsh'
+[7.901s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/hazbot/hazbot/install/driver/share/colcon-core/packages/driver)
+[7.902s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[7.903s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[7.904s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[7.904s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[7.946s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[7.946s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[7.946s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[7.976s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[7.977s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/hazbot/hazbot/install/local_setup.ps1'
+[7.979s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/hazbot/hazbot/install/_local_setup_util_ps1.py'
+[7.982s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/hazbot/hazbot/install/setup.ps1'
+[8.016s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/hazbot/hazbot/install/local_setup.sh'
+[8.018s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/hazbot/hazbot/install/_local_setup_util_sh.py'
+[8.019s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/hazbot/hazbot/install/setup.sh'
+[8.051s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/hazbot/hazbot/install/local_setup.bash'
+[8.052s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/hazbot/hazbot/install/setup.bash'
+[8.084s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/hazbot/hazbot/install/local_setup.zsh'
+[8.085s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/hazbot/hazbot/install/setup.zsh'
