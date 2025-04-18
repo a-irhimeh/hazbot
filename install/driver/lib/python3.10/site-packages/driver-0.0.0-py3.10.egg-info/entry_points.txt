@@ -1,4 +1,5 @@
 [console_scripts]
+m1 = driver.m1_controller:main
 motor_controller = driver.motor_controller:main
 odometry = driver.odometry:main
 

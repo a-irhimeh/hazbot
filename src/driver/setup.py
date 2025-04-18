@@ -30,6 +30,7 @@ setup(
         'console_scripts': [
             # Motor controller node
             'motor_controller = driver.motor_controller:main',
+            'm1 = driver.m1_controller:main',
             # Odometry node
             'odometry = driver.odometry:main',
         ],

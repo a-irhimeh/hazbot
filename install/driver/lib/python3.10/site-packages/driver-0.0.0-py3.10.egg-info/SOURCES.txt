@@ -10,6 +10,7 @@ setup.py
 ../../build/driver/driver.egg-info/zip-safe
 config/nav2_params.yaml
 driver/__init__.py
+driver/m1_controller.py
 driver/motor_controller.py
 driver/odometry.py
 launch/navigation.launch.py
