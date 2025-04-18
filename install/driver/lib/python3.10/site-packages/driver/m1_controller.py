@@ -19,10 +19,14 @@ class DobotM1JoystickControl(Node):
             self.device = Dobot(port=port, verbose=False)
             self.device._Clear_All_Alarm_States()
             self.device._set_arm_orientation('L')  # Set to left-handed orientation
+            # Set initial high speeds
+            self.device._set_ptp_joint_params(200, 200, 200, 200, 200, 200, 200, 200)
+            self.device._set_ptp_coordinate_params(velocity=200, acceleration=200)
+            self.device._set_ptp_common_params(velocity=100, acceleration=100)
             self.get_logger().info('Successfully connected to Dobot M1')
         except Exception as e:
             self.get_logger().error(f'Failed to connect to Dobot M1: {str(e)}')
-            print(f'\033[91mERROR - Connection Failed: {str(e)}\033[0m')  # Red error text
+            print(f'\033[91mERROR - Connection Failed: {str(e)}\033[0m')
             print(f'Traceback:\n{"".join(traceback.format_tb(e.__traceback__))}')
             return
 
@@ -36,21 +40,19 @@ class DobotM1JoystickControl(Node):
             return
         
         # Movement parameters
-        self.base_linear_speed = 10.0  # base movement in mm per command
-        self.base_angular_speed = 2.0  # base rotation in degrees per command
-        self.base_z_speed = 5.0  # base Z movement in mm per command
+        self.base_linear_speed = 20.0  # Increased base speed in mm per command
+        self.base_angular_speed = 5.0  # Increased base rotation in degrees per command
+        self.base_z_speed = 10.0  # Increased base Z movement in mm per command
         
-        # Speed multiplier now controls coordinate skipping
-        self.speed_multiplier = 1  # Start with no skipping (1 means use every coordinate)
-        self.min_speed_multiplier = 1  # Minimum is no skipping
-        self.max_speed_multiplier = 5  # Maximum will skip 4 out of 5 coordinates
+        # Speed multiplier for direct speed control
+        self.speed_multiplier = 1.0
+        self.min_speed_multiplier = 0.5
+        self.max_speed_multiplier = 3.0
         
-        # Movement accumulation for coordinate skipping
-        self.accumulated_x = 0.0
-        self.accumulated_y = 0.0
-        self.accumulated_z = 0.0
-        self.accumulated_r = 0.0
-        self.move_counter = 0  # Counter for coordinate skipping
+        # Effective speeds
+        self.linear_speed = self.base_linear_speed * self.speed_multiplier
+        self.angular_speed = self.base_angular_speed * self.speed_multiplier
+        self.z_speed = self.base_z_speed * self.speed_multiplier
         
         # Create subscription to joy topic
         self.joy_sub = self.create_subscription(
@@ -63,23 +65,21 @@ class DobotM1JoystickControl(Node):
         # Initialize states
         self.gripper_state = False
         self.suction_state = False
-        self.left_arm_orientation = True  # True for left, False for right
-        self.motors_enabled = True  # Motors start enabled
+        self.left_arm_orientation = True
+        self.motors_enabled = True
         
         # Button debouncing
         self.last_speed_change_time = self.get_clock().now()
         self.last_orientation_change_time = self.get_clock().now()
         self.last_motor_toggle_time = self.get_clock().now()
-        self.debounce_duration = 0.3  # seconds
+        self.debounce_duration = 0.3
         
     def update_speeds(self):
-        """Update speed multiplier (coordinate skipping factor)"""
-        self.get_logger().info(f'Speed level set to: {self.speed_multiplier}x (skipping {self.speed_multiplier - 1} coordinates)')
-        
-    def should_move(self):
-        """Determine if we should move based on coordinate skipping"""
-        self.move_counter = (self.move_counter + 1) % self.speed_multiplier
-        return self.move_counter == 0
+        """Update all speed values based on the current multiplier"""
+        self.linear_speed = self.base_linear_speed * self.speed_multiplier
+        self.angular_speed = self.base_angular_speed * self.speed_multiplier
+        self.z_speed = self.base_z_speed * self.speed_multiplier
+        self.get_logger().info(f'Speed multiplier set to: {self.speed_multiplier:.1f}x')
         
     def joy_callback(self, msg):
         try:
@@ -88,11 +88,11 @@ class DobotM1JoystickControl(Node):
             # Debug print for button presses and axis movements
             for i, button in enumerate(msg.buttons):
                 if button:
-                    print(f'\033[95mButton {i} pressed\033[0m')  # Magenta text for button presses
+                    print(f'\033[95mButton {i} pressed\033[0m')
             
             for i, axis in enumerate(msg.axes):
-                if abs(axis) > 0.5:  # Only show significant axis movement
-                    print(f'\033[96mAxis {i} value: {axis:.2f}\033[0m')  # Cyan text for axis movement
+                if abs(axis) > 0.5:
+                    print(f'\033[96mAxis {i} value: {axis:.2f}\033[0m')
             
             # Motor toggle using Start button (index 3)
             if len(msg.buttons) > 3:
@@ -100,14 +100,14 @@ class DobotM1JoystickControl(Node):
                     self.motors_enabled = not self.motors_enabled
                     try:
                         if self.motors_enabled:
-                            # Re-enable motors
-                            self.device._set_ptp_joint_params(100, 100, 100, 100, 100, 100, 100, 100)
+                            # Re-enable motors with high speeds
+                            self.device._set_ptp_joint_params(200, 200, 200, 200, 200, 200, 200, 200)
                             self.device._set_ptp_coordinate_params(velocity=200, acceleration=200)
                             self.device._set_ptp_common_params(velocity=100, acceleration=100)
                             self.get_logger().info('Motors enabled')
                             print('\033[92mMotors enabled successfully\033[0m')
                         else:
-                            # Disable motors by setting speeds to 0
+                            # Disable motors
                             self.device._set_ptp_joint_params(0, 0, 0, 0, 0, 0, 0, 0)
                             self.device._set_ptp_coordinate_params(velocity=0, acceleration=0)
                             self.device._set_ptp_common_params(velocity=0, acceleration=0)
@@ -126,82 +126,50 @@ class DobotM1JoystickControl(Node):
                     if len(msg.axes) >= 8:
                         if msg.axes[7] > 0:  # D-pad up
                             if (current_time - self.last_speed_change_time).nanoseconds / 1e9 > self.debounce_duration:
-                                self.speed_multiplier = min(self.max_speed_multiplier, self.speed_multiplier + 1)
+                                self.speed_multiplier = min(self.max_speed_multiplier, self.speed_multiplier + 0.2)
                                 self.update_speeds()
                                 self.last_speed_change_time = current_time
                         elif msg.axes[7] < 0:  # D-pad down
                             if (current_time - self.last_speed_change_time).nanoseconds / 1e9 > self.debounce_duration:
-                                self.speed_multiplier = max(self.min_speed_multiplier, self.speed_multiplier - 1)
+                                self.speed_multiplier = max(self.min_speed_multiplier, self.speed_multiplier - 0.2)
                                 self.update_speeds()
                                 self.last_speed_change_time = current_time
                     
-                    # Arm orientation control (R2 button - index 9)
-                    if len(msg.buttons) > 9:
-                        if msg.buttons[9] and (current_time - self.last_orientation_change_time).nanoseconds / 1e9 > self.debounce_duration:
-                            try:
-                                self.left_arm_orientation = not self.left_arm_orientation
-                                self.device._set_arm_orientation('L' if self.left_arm_orientation else 'R')
-                                orientation_str = "Left" if self.left_arm_orientation else "Right"
-                                self.get_logger().info(f'Arm orientation set to: {orientation_str}')
-                                print(f'\033[94mArm orientation changed to: {orientation_str}\033[0m')
-                            except Exception as e:
-                                self.get_logger().error(f'Error changing arm orientation: {str(e)}')
-                                print(f'\033[91mERROR - Failed to change arm orientation: {str(e)}\033[0m')
-                                print(f'Traceback:\n{"".join(traceback.format_tb(e.__traceback__))}')
-                            self.last_orientation_change_time = current_time
-                    
-                    # Calculate movement amounts
-                    x_move = msg.axes[2] * self.base_linear_speed
-                    y_move = msg.axes[3] * self.base_linear_speed
+                    # Calculate movements with direct speed control
+                    x_move = msg.axes[2] * self.linear_speed
+                    y_move = msg.axes[3] * self.linear_speed
                     
                     z_move = 0.0
                     if len(msg.buttons) > 11:
                         if msg.buttons[10]:  # L1 for down
-                            z_move = -self.base_z_speed
+                            z_move = -self.z_speed
                         elif msg.buttons[11]:  # R1 for up
-                            z_move = self.base_z_speed
+                            z_move = self.z_speed
                     
                     # Rotation using D-pad left/right (axes 6)
                     r_move = 0.0
                     if len(msg.axes) >= 7:
                         if msg.axes[6] > 0:  # D-pad left
-                            r_move = -self.base_angular_speed
+                            r_move = -self.angular_speed
                             print('\033[96mRotating counter-clockwise\033[0m')
                         elif msg.axes[6] < 0:  # D-pad right
-                            r_move = self.base_angular_speed
+                            r_move = self.angular_speed
                             print('\033[96mRotating clockwise\033[0m')
                     
-                    # Accumulate movements
-                    self.accumulated_x += x_move
-                    self.accumulated_y += y_move
-                    self.accumulated_z += z_move
-                    self.accumulated_r += r_move
+                    # Calculate new position
+                    new_x = self.current_x + x_move
+                    new_y = self.current_y + y_move
+                    new_z = self.current_z + z_move
+                    new_r = self.current_r + r_move
                     
-                    # Only move if we should (based on coordinate skipping)
-                    if self.should_move():
-                        try:
-                            # Calculate new position using accumulated movements
-                            new_x = self.current_x + self.accumulated_x
-                            new_y = self.current_y + self.accumulated_y
-                            new_z = self.current_z + self.accumulated_z
-                            new_r = self.current_r + self.accumulated_r
-                            
-                            # Move the arm
-                            self.device.move_to(new_x, new_y, new_z, new_r, wait=True)
-                            
-                            # Update current position
-                            self.current_x, self.current_y, self.current_z, self.current_r, _, _, _, _ = self.device.pose()
-                            
-                            # Reset accumulations
-                            self.accumulated_x = 0.0
-                            self.accumulated_y = 0.0
-                            self.accumulated_z = 0.0
-                            self.accumulated_r = 0.0
-                        except Exception as e:
-                            self.get_logger().error(f'Error during movement: {str(e)}')
-                            print(f'\033[91mERROR - Movement failed: {str(e)}\033[0m')
-                            print(f'Attempted move to: X={new_x:.2f}, Y={new_y:.2f}, Z={new_z:.2f}, R={new_r:.2f}')
-                            print(f'Traceback:\n{"".join(traceback.format_tb(e.__traceback__))}')
+                    # Move the arm (without wait for faster response)
+                    self.device.move_to(new_x, new_y, new_z, new_r, wait=False)
+                    
+                    # Update current position
+                    self.current_x = new_x
+                    self.current_y = new_y
+                    self.current_z = new_z
+                    self.current_r = new_r
                     
                     # Handle gripper control (X button - index 0)
                     if len(msg.buttons) > 0 and msg.buttons[0]:
