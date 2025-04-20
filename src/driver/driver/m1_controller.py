@@ -57,23 +57,30 @@ class DobotM1JoystickControl(Node):
         self.CONTROL_MODE_JOINT = 1
         self.control_mode = self.CONTROL_MODE_XYZ
         
-        # Button mappings (PS4 controller)
-        self.BTN_X = 2        # Gripper
-        self.BTN_CIRCLE = 1   # Suction
-        self.BTN_TRIANGLE = 3 # Change control mode
-        self.BTN_SQUARE = 0   # Change orientation
-        self.BTN_L1 = 4       # Z down
-        self.BTN_R1 = 5       # Z up
-        self.BTN_L2 = 6       # Decrease speed
-        self.BTN_R2 = 7       # Increase speed
-        self.BTN_SHARE = 8    # Home position
-        self.BTN_OPTIONS = 9  # Emergency stop
+        # Button mappings (PS3 controller)
+        self.BTN_SELECT = 0    # Reset position to center
+        self.BTN_L3 = 1        # Left analog button (not used)
+        self.BTN_R3 = 2        # Right analog button (not used)
+        self.BTN_START = 3     # Enable/disable motors
+        self.BTN_DPAD_UP = 4   # Increase speed
+        self.BTN_DPAD_RIGHT = 5  # Not used
+        self.BTN_DPAD_DOWN = 6   # Decrease speed
+        self.BTN_DPAD_LEFT = 7   # Not used
+        self.BTN_L2 = 8        # Not used
+        self.BTN_R2 = 9        # Change orientation
+        self.BTN_L1 = 10       # Z down
+        self.BTN_R1 = 11       # Z up
+        self.BTN_TRIANGLE = 12  # Suction options
+        self.BTN_CIRCLE = 13   # Clear alarms
+        self.BTN_X = 14        # Suction on/off
+        self.BTN_SQUARE = 15   # Not used
+        self.BTN_PS = 16       # Not used
         
-        # Axis mappings
-        self.AXIS_LX = 0  # X movement in XYZ mode / J1 in Joint mode
-        self.AXIS_LY = 1  # Y movement in XYZ mode / J2 in Joint mode
-        self.AXIS_RX = 3  # Rotation in XYZ mode / J3 in Joint mode
-        self.AXIS_RY = 4  # Z movement in XYZ mode / J4 in Joint mode
+        # Axis mappings for PS3 (these are correct)
+        self.AXIS_LX = 0      # Not used
+        self.AXIS_LY = 1      # Not used
+        self.AXIS_RX = 2      # X movement in XYZ mode
+        self.AXIS_RY = 3      # Y movement in XYZ mode
         
         # Movement thresholds and timing
         self.min_move_interval = 0.02  # 20ms for better responsiveness
@@ -191,134 +198,139 @@ class DobotM1JoystickControl(Node):
             self.get_logger().error('No device connection available')
             return
             
-        if self.is_estopped:
-            return
-            
         current_time = time.time()
         
-        # Debug output for joystick state
-        if any(abs(axis) > self.joy_deadzone for axis in msg.axes) or any(msg.buttons):
-            self.get_logger().info(f'Axes: {[f"{x:.2f}" for x in msg.axes]}')
-            self.get_logger().info(f'Buttons: {msg.buttons}')
-            # Add detailed axis diagnostics
-            if len(msg.axes) > self.AXIS_RY:
-                self.get_logger().info(f'Detailed axes:'
-                                     f'\n  Left X (AXIS_LX={self.AXIS_LX}): {msg.axes[self.AXIS_LX]:.3f}'
-                                     f'\n  Left Y (AXIS_LY={self.AXIS_LY}): {msg.axes[self.AXIS_LY]:.3f}'
-                                     f'\n  Right X (AXIS_RX={self.AXIS_RX}): {msg.axes[self.AXIS_RX]:.3f}'
-                                     f'\n  Right Y (AXIS_RY={self.AXIS_RY}): {msg.axes[self.AXIS_RY]:.3f}')
-            
-            # Check for potentially stuck axes
-            stuck_axes = [i for i, val in enumerate(msg.axes) if abs(abs(val) - 1.0) < 0.01]
-            if stuck_axes:
-                self.get_logger().warn(f'Possible stuck axes detected: {stuck_axes}')
-        
-        # Handle E-stop
-        if len(msg.buttons) > self.BTN_OPTIONS and msg.buttons[self.BTN_OPTIONS]:
+        # Handle motor enable/disable (Start button)
+        if len(msg.buttons) > self.BTN_START and msg.buttons[self.BTN_START]:
             if current_time - self.last_button_press['estop'] > self.button_debounce_time:
-                self.is_estopped = True
-                try:
+                if self.is_estopped:
+                    # Re-enable the robot
+                    self.is_estopped = False
+                    with self.device_lock:
+                        self.device._set_ptp_joint_params(400, 400, 400, 400, 400, 400, 400, 400)
+                        self.device._set_ptp_coordinate_params(velocity=400, acceleration=400)
+                        self.device._set_ptp_common_params(velocity=200, acceleration=200)
+                        self.motors_enabled = True
+                    self.get_logger().info('Motors enabled')
+                else:
+                    # Disable motors
+                    self.is_estopped = True
                     with self.device_lock:
                         self.device._set_ptp_joint_params(0, 0, 0, 0, 0, 0, 0, 0)
                         self.motors_enabled = False
-                    self.get_logger().warn('Emergency stop activated')
-                except Exception as e:
-                    self.get_logger().error(f'Failed to E-stop: {str(e)}')
+                    self.get_logger().warn('Motors disabled')
                 self.last_button_press['estop'] = current_time
                 return
+        
+        if self.is_estopped:
+            self.get_logger().warn('Robot is e-stopped. Press Start to re-enable.')
+            return
+            
+        # Debug output for button presses
+        for i, button in enumerate(msg.buttons):
+            if button:
+                self.get_logger().info(f'Button {i} pressed')
+        
+        # Debug output for non-zero axes
+        for i, axis in enumerate(msg.axes):
+            if abs(axis) > 0.1:
+                self.get_logger().info(f'Axis {i} value: {axis:.2f}')
         
         # Rate limiting
         if current_time - self.last_move_time < self.min_move_interval:
             return
             
-        # Reset error count if enough time has passed
-        if current_time - self.last_error_time > self.error_reset_interval:
-            self.consecutive_errors = 0
-        
         try:
-            # Handle mode change (Triangle button)
-            if len(msg.buttons) > self.BTN_TRIANGLE and msg.buttons[self.BTN_TRIANGLE]:
-                if current_time - self.last_button_press['mode'] > self.button_debounce_time:
-                    self.control_mode = (self.control_mode + 1) % 2
-                    self.get_logger().info(f'Control mode: {"XYZ" if self.control_mode == self.CONTROL_MODE_XYZ else "Joint"}')
-                    self.last_button_press['mode'] = current_time
-            
-            # Handle orientation change (Square button)
-            if len(msg.buttons) > self.BTN_SQUARE and msg.buttons[self.BTN_SQUARE]:
-                if current_time - self.last_button_press['orientation'] > self.button_debounce_time:
+            # Handle clear alarms (Circle button)
+            if len(msg.buttons) > self.BTN_CIRCLE and msg.buttons[self.BTN_CIRCLE]:
+                if current_time - self.last_button_press['alarm'] > self.button_debounce_time:
                     with self.device_lock:
-                        self.left_arm_orientation = not self.left_arm_orientation
-                        self.device._set_arm_orientation('L' if self.left_arm_orientation else 'R')
-                        self.get_logger().info(f'Arm orientation: {"Left" if self.left_arm_orientation else "Right"}')
-                    self.last_button_press['orientation'] = current_time
+                        self.device._Clear_All_Alarm_States()
+                    self.get_logger().info('Cleared all alarms')
+                    self.last_button_press['alarm'] = current_time
             
-            # Handle speed changes
+            # Handle orientation change (R2 button)
             if len(msg.buttons) > self.BTN_R2 and msg.buttons[self.BTN_R2]:
+                if current_time - self.last_button_press['orientation'] > self.button_debounce_time:
+                    try:
+                        with self.device_lock:
+                            self.left_arm_orientation = not self.left_arm_orientation
+                            orientation = 'L' if self.left_arm_orientation else 'R'
+                            self.device._set_arm_orientation(orientation)
+                            self.get_logger().info(f'Changed arm orientation to: {orientation}')
+                        self.last_button_press['orientation'] = current_time
+                    except Exception as e:
+                        self.get_logger().error(f'Failed to change orientation: {str(e)}')
+            
+            # Handle speed changes (D-pad Up/Down)
+            if len(msg.buttons) > self.BTN_DPAD_UP and msg.buttons[self.BTN_DPAD_UP]:
                 self.handle_speed_change(True, current_time)
-            if len(msg.buttons) > self.BTN_L2 and msg.buttons[self.BTN_L2]:
+            if len(msg.buttons) > self.BTN_DPAD_DOWN and msg.buttons[self.BTN_DPAD_DOWN]:
                 self.handle_speed_change(False, current_time)
             
-            # Handle home position
-            if len(msg.buttons) > self.BTN_SHARE and msg.buttons[self.BTN_SHARE]:
+            # Handle reset position (Select button)
+            if len(msg.buttons) > self.BTN_SELECT and msg.buttons[self.BTN_SELECT]:
                 self.handle_home_position(current_time)
+            
+            # Handle suction control (X button)
+            if len(msg.buttons) > self.BTN_X and msg.buttons[self.BTN_X]:
+                if current_time - self.last_button_press['suction'] > self.button_debounce_time:
+                    try:
+                        with self.device_lock:
+                            self.suction_state = not self.suction_state
+                            self.device.suck(self.suction_state)
+                            self.get_logger().info(f'Suction turned {"on" if self.suction_state else "off"}')
+                        self.last_button_press['suction'] = current_time
+                    except Exception as e:
+                        self.get_logger().error(f'Failed to control suction: {str(e)}')
             
             # Calculate movements based on control mode
             if self.control_mode == self.CONTROL_MODE_XYZ:
-                # XYZ mode movement
-                x_move = msg.axes[self.AXIS_LX] * self.linear_speed if abs(msg.axes[self.AXIS_LX]) > self.joy_deadzone else 0
-                y_move = -msg.axes[self.AXIS_LY] * self.linear_speed if abs(msg.axes[self.AXIS_LY]) > self.joy_deadzone else 0
+                # XYZ mode movement using right analog stick
+                x_move = msg.axes[self.AXIS_RX] * self.linear_speed if abs(msg.axes[self.AXIS_RX]) > self.joy_deadzone else 0
+                y_move = -msg.axes[self.AXIS_RY] * self.linear_speed if abs(msg.axes[self.AXIS_RY]) > self.joy_deadzone else 0
                 
                 # Z movement requires L1 (down) or R1 (up) buttons
                 z_move = 0
                 if len(msg.buttons) > self.BTN_R1:
                     if msg.buttons[self.BTN_R1]:  # Up
-                        z_move = self.z_speed
-                    elif msg.buttons[self.BTN_L1]:  # Down
                         z_move = -self.z_speed
+                        self.get_logger().info('Moving UP')
+                    elif msg.buttons[self.BTN_L1]:  # Down
+                        z_move = self.z_speed
+                        self.get_logger().info('Moving DOWN')
                 
-                r_move = msg.axes[self.AXIS_RX] * self.angular_speed if abs(msg.axes[self.AXIS_RX]) > self.joy_deadzone else 0
+                # Debug current position
+                self.get_logger().info(f'Current position - X:{self.current_x:.1f} Y:{self.current_y:.1f} Z:{self.current_z:.1f} R:{self.current_r:.1f}')
                 
                 # Update target position
                 self.target_x = self.current_x + x_move
                 self.target_y = self.current_y + y_move
                 self.target_z = self.current_z + z_move
-                self.target_r = self.current_r + r_move
+                self.target_r = self.current_r  # No rotation movement
                 
                 # Send movement command if there's significant movement
-                if abs(x_move) > 0.1 or abs(y_move) > 0.1 or abs(z_move) > 0.1 or abs(r_move) > 0.1:
+                if abs(x_move) > 0.1 or abs(y_move) > 0.1 or abs(z_move) > 0.1:
+                    self.get_logger().info(f'Sending move command - X:{self.target_x:.1f} Y:{self.target_y:.1f} Z:{self.target_z:.1f} R:{self.target_r:.1f}')
                     with self.device_lock:
                         self.device.move_to(self.target_x, self.target_y, self.target_z, self.target_r, wait=False)
+                        self.get_logger().info('Move command sent successfully')
                     self.last_move_time = current_time
             
-            else:  # CONTROL_MODE_JOINT
-                # Joint mode movement (if supported by your Dobot implementation)
-                j1 = msg.axes[self.AXIS_LX] * self.angular_speed if abs(msg.axes[self.AXIS_LX]) > self.joy_deadzone else 0
-                j2 = -msg.axes[self.AXIS_LY] * self.angular_speed if abs(msg.axes[self.AXIS_LY]) > self.joy_deadzone else 0
-                j3 = msg.axes[self.AXIS_RX] * self.angular_speed if abs(msg.axes[self.AXIS_RX]) > self.joy_deadzone else 0
-                j4 = -msg.axes[self.AXIS_RY] * self.angular_speed if abs(msg.axes[self.AXIS_RY]) > self.joy_deadzone else 0
-                
-                if abs(j1) > 0.1 or abs(j2) > 0.1 or abs(j3) > 0.1 or abs(j4) > 0.1:
-                    with self.device_lock:
-                        # Note: Implement joint movement if your Dobot API supports it
-                        pass
-            
-            # Handle gripper control (X button)
+            # Handle suction control (X button for on, Triangle for options)
             if len(msg.buttons) > self.BTN_X and msg.buttons[self.BTN_X]:
-                if current_time - self.last_button_press['gripper'] > self.button_debounce_time:
-                    with self.device_lock:
-                        self.gripper_state = not self.gripper_state
-                        self.device.grip(self.gripper_state)
-                        self.get_logger().info(f'Gripper: {"On" if self.gripper_state else "Off"}')
-                    self.last_button_press['gripper'] = current_time
-            
-            # Handle suction control (Circle button)
-            if len(msg.buttons) > self.BTN_CIRCLE and msg.buttons[self.BTN_CIRCLE]:
                 if current_time - self.last_button_press['suction'] > self.button_debounce_time:
                     with self.device_lock:
                         self.suction_state = not self.suction_state
                         self.device.suck(self.suction_state)
                         self.get_logger().info(f'Suction: {"On" if self.suction_state else "Off"}')
                     self.last_button_press['suction'] = current_time
+            
+            if len(msg.buttons) > self.BTN_TRIANGLE and msg.buttons[self.BTN_TRIANGLE]:
+                if current_time - self.last_button_press['suction_options'] > self.button_debounce_time:
+                    # Add suction options handling here if needed
+                    self.get_logger().info('Suction options pressed')
+                    self.last_button_press['suction_options'] = current_time
                     
         except Exception as e:
             self.get_logger().error(f'Movement error: {str(e)}')

@@ -1,0 +1,16 @@
+[3.231s] Invoking command in '/home/hazbot/hazbot/src/driver': PYTHONPATH=/home/hazbot/hazbot/build/driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hazbot/hazbot/install/driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/driver build --build-base /home/hazbot/hazbot/build/driver/build install --record /home/hazbot/hazbot/build/driver/install.log --single-version-externally-managed install_data
+[4.435s] running egg_info
+[4.443s] writing manifest file '../../build/driver/driver.egg-info/SOURCES.txt'
+[4.444s] running build
+[4.444s] running build_py
+[4.444s] copying driver/m1_controller.py -> /home/hazbot/hazbot/build/driver/build/lib/driver
+[4.445s] running install
+[4.451s] running install_lib
+[4.459s] byte-compiling /home/hazbot/hazbot/install/driver/lib/python3.10/site-packages/driver/m1_controller.py to m1_controller.cpython-310.pyc
+[4.463s] running install_data
+[4.463s] running install_egg_info
+[4.471s] removing '/home/hazbot/hazbot/install/driver/lib/python3.10/site-packages/driver-0.0.0-py3.10.egg-info' (and everything under it)
+[4.472s] Copying ../../build/driver/driver.egg-info to /home/hazbot/hazbot/install/driver/lib/python3.10/site-packages/driver-0.0.0-py3.10.egg-info
+[4.474s] running install_scripts
+[4.558s] writing list of installed files to '/home/hazbot/hazbot/build/driver/install.log'
+[4.623s] Invoked command in '/home/hazbot/hazbot/src/driver' returned '0': PYTHONPATH=/home/hazbot/hazbot/build/driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hazbot/hazbot/install/driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/driver build --build-base /home/hazbot/hazbot/build/driver/build install --record /home/hazbot/hazbot/build/driver/install.log --single-version-externally-managed install_data
