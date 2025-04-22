@@ -200,6 +200,32 @@ class DobotM1JoystickControl(Node):
             
         current_time = time.time()
         
+        # Handle motor enable/disable (Start button)
+        if len(msg.buttons) > self.BTN_START and msg.buttons[self.BTN_START]:
+            if current_time - self.last_button_press['estop'] > self.button_debounce_time:
+                if self.is_estopped:
+                    # Re-enable the robot
+                    self.is_estopped = False
+                    with self.device_lock:
+                        self.device._set_ptp_joint_params(400, 400, 400, 400, 400, 400, 400, 400)
+                        self.device._set_ptp_coordinate_params(velocity=400, acceleration=400)
+                        self.device._set_ptp_common_params(velocity=200, acceleration=200)
+                        self.motors_enabled = True
+                    self.get_logger().info('Motors enabled')
+                else:
+                    # Disable motors
+                    self.is_estopped = True
+                    with self.device_lock:
+                        self.device._set_ptp_joint_params(0, 0, 0, 0, 0, 0, 0, 0)
+                        self.motors_enabled = False
+                    self.get_logger().warn('Motors disabled')
+                self.last_button_press['estop'] = current_time
+                return
+        
+        if self.is_estopped:
+            self.get_logger().warn('Robot is e-stopped. Press Start to re-enable.')
+            return
+            
         # Debug output for button presses
         for i, button in enumerate(msg.buttons):
             if button:
@@ -210,10 +236,6 @@ class DobotM1JoystickControl(Node):
             if abs(axis) > 0.1:
                 self.get_logger().info(f'Axis {i} value: {axis:.2f}')
         
-        if self.is_estopped:
-            self.get_logger().warn('Robot is e-stopped. Press Start to re-enable.')
-            return
-            
         # Rate limiting
         if current_time - self.last_move_time < self.min_move_interval:
             return
@@ -230,11 +252,15 @@ class DobotM1JoystickControl(Node):
             # Handle orientation change (R2 button)
             if len(msg.buttons) > self.BTN_R2 and msg.buttons[self.BTN_R2]:
                 if current_time - self.last_button_press['orientation'] > self.button_debounce_time:
-                    with self.device_lock:
-                        self.left_arm_orientation = not self.left_arm_orientation
-                        self.device._set_arm_orientation('L' if self.left_arm_orientation else 'R')
-                        self.get_logger().info(f'Arm orientation: {"Left" if self.left_arm_orientation else "Right"}')
-                    self.last_button_press['orientation'] = current_time
+                    try:
+                        with self.device_lock:
+                            self.left_arm_orientation = not self.left_arm_orientation
+                            orientation = 'L' if self.left_arm_orientation else 'R'
+                            self.device._set_arm_orientation(orientation)
+                            self.get_logger().info(f'Changed arm orientation to: {orientation}')
+                        self.last_button_press['orientation'] = current_time
+                    except Exception as e:
+                        self.get_logger().error(f'Failed to change orientation: {str(e)}')
             
             # Handle speed changes (D-pad Up/Down)
             if len(msg.buttons) > self.BTN_DPAD_UP and msg.buttons[self.BTN_DPAD_UP]:
@@ -245,6 +271,18 @@ class DobotM1JoystickControl(Node):
             # Handle reset position (Select button)
             if len(msg.buttons) > self.BTN_SELECT and msg.buttons[self.BTN_SELECT]:
                 self.handle_home_position(current_time)
+            
+            # Handle suction control (X button)
+            if len(msg.buttons) > self.BTN_X and msg.buttons[self.BTN_X]:
+                if current_time - self.last_button_press['suction'] > self.button_debounce_time:
+                    try:
+                        with self.device_lock:
+                            self.suction_state = not self.suction_state
+                            self.device.suck(self.suction_state)
+                            self.get_logger().info(f'Suction turned {"on" if self.suction_state else "off"}')
+                        self.last_button_press['suction'] = current_time
+                    except Exception as e:
+                        self.get_logger().error(f'Failed to control suction: {str(e)}')
             
             # Calculate movements based on control mode
             if self.control_mode == self.CONTROL_MODE_XYZ:
